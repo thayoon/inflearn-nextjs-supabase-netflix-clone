@@ -16,7 +16,7 @@ export async function generateMetadata({ params, searchParams }) {
 export default async function MovieDetail({ params }) {
   const movie = await getMovie(params.id);
   return (
-    <main className="py-16 flex items-center bg-blue-50 w-full absolute top-0 bottom-0 left-0 right-0">
+    <main className="py-16 flex items-center bg-gray-900/80 w-full absolute top-0 bottom-0 left-0 right-0">
       {movie ? <UI movie={movie} /> : <div>Movie does not exists</div>}
     </main>
   );
