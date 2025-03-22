@@ -9,6 +9,32 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      favorites: {
+        Row: {
+          created_at: string
+          id: number
+          movie_id: number
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          movie_id: number
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          movie_id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "favorites_movie_id_fkey"
+            columns: ["movie_id"]
+            isOneToOne: false
+            referencedRelation: "movie"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       movie: {
         Row: {
           id: number
@@ -71,7 +97,23 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_movies_with_favorites: {
+        Args: {
+          search: string
+          page: number
+          page_size: number
+        }
+        Returns: {
+          id: number
+          image_url: string
+          title: string
+          overview: string
+          vote_average: number
+          popularity: number
+          release_date: string
+          favorite: boolean
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
